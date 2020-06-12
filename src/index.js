@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 import App from './App';
+
+import env from 'dotenv';
+env.config();
+
 
 ReactDOM.render(
   <React.StrictMode>
