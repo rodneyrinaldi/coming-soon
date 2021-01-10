@@ -10,7 +10,7 @@ function App() {
   const [email, setEmail] = useState("");
 
   function handleSubmit(e) {
-    //e.preventDefault();
+    e.preventDefault();
 
     const contactpar = {
       "sitename": process.env.REACT_APP_SITE_NAME,
@@ -35,7 +35,7 @@ function App() {
       process.env.REACT_APP_USER_ID
     );
     //document.getElementById("EmailID").textContent = "";
-    alert("Mensagem enviada");
+    //alert("Mensagem enviada");
   }
 
   function sendEmail(service, emailtemplate, parameters, user) {
@@ -51,6 +51,7 @@ function App() {
       alert(error);
     }
     );
+    document.location.reload(true);
   }
 
   return (
