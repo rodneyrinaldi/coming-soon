@@ -8,8 +8,8 @@ const fetcher = url => fetch(url).then(res => res.json());
 export default function Home() {
 
   const { data, error } = useSWR(
-    // "https://rr-coming-soon.vercel.app/api/send/",
-    "http://localhost:3000/api/send/",
+    "https://rr-coming-soon.vercel.app/api/send/",
+    // "http://localhost:3000/api/send/",
     fetcher
   );
 
