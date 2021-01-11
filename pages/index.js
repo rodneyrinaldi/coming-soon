@@ -14,8 +14,10 @@ export default function Home() {
         <Image
           src="/coding.gif"
           alt="Logo coding"
-          width={400}
-          height={300}
+          width={280}
+          height={210}
+        // width={400}
+        // height={300}
         />
         <br />
         <Image
@@ -27,24 +29,11 @@ export default function Home() {
 
         <form>
 
-          <p className="title">Novidades em breve, inscreva-se para recebê-las</p>
+          <p className="title">Inscreva-se na newsletter</p>
           <div className="line">
             <input type="email" id="EmailID" name="Email" placeholder="E-mail" required className="email" onChange={e => setEmail(e.target.value)} />
             <input type="submit" value="ENVIAR" className="button" />
           </div>
-
-
-
-
-
-
-
-
-          {/* <p className="title">Novidades em breve, inscreva-se para recebê-las</p>
-          <div>
-            <input type="email" id="EmailID" name="Email" placeholder="E-mail" required className="email" onChange={e => setEmail(e.target.value)} />
-            <input type="submit" value="ENVIAR" className="button" />
-          </div> */}
 
         </form>
 
