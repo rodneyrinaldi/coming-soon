@@ -1,7 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import useSWR from 'swr'
+
+const fetcher = url => fetch(url).then(res => res.json());
+
 export default function Home() {
+
+  const { data, error } = useSWR(
+    // "https://rr-coming-soon.vercel.app/api/send/",
+    "http://localhost:3000/api/send/",
+    fetcher
+  );
+
+  if (error) return "Erro no carregamento.";
+  if (!data) return "Carregando...";
+
+
   return (
     <div className="container">
 
@@ -16,8 +31,6 @@ export default function Home() {
           alt="Logo coding"
           width={280}
           height={210}
-        // width={400}
-        // height={300}
         />
         <br />
         <Image
