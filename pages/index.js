@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -6,16 +8,25 @@ import useSWR from 'swr'
 const fetcher = url => fetch(url).then(res => res.json());
 
 export default function Home() {
+  const [email, setEmail] = useState("")
 
-  const { data, error } = useSWR(
-    "https://rr-coming-soon.vercel.app/api/send/",
-    // "http://localhost:3000/api/send/",
-    fetcher
-  );
+  function handleSubmit(e) {
+    e.preventDefault()
+    callApi(email)
+    console.log("Mensagem enviada")
+  }
 
-  if (error) return "Erro no carregamento.";
-  if (!data) return "Carregando...";
-
+  function callApi(address) {
+    let pathAPI = process.env.apiUrlPrd;
+    if (process.env.NODE_ENV === 'development') {
+      pathAPI = process.env.apiUrlDev;
+    }
+    console.log(pathAPI + address)
+    const { data, error } = useSWR(pathAPI + address, fetcher);
+    if (error) return <p className="title">Erro no carregamento</p>;
+    if (!data) return <p className="title">Carregando...</p>;
+    return <>{data.status}</>
+  }
 
   return (
     <div className="container">
@@ -40,7 +51,7 @@ export default function Home() {
           height={102}
         />
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <p className="title">Inscreva-se na newsletter</p>
           <div className="line">
