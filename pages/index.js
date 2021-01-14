@@ -10,7 +10,7 @@ function Home(props) {
   function handleSubmit(e) {
     e.preventDefault()
 
-    const params = { sitename: 'teste', emailaddress: email }
+    const params = { sitename: 'rodneyrinaldi.com', emailaddress: email }
 
     emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, params, process.env.EMAILJS_USER_ID)
       .then((result) => {
@@ -19,7 +19,6 @@ function Home(props) {
         console.log(error.text)
       })
 
-    document.getElementById('message_email').value = 'INSCRITO'
     document.getElementById('user_email').value = ''
   }
 
