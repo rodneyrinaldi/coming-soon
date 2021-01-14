@@ -22,8 +22,10 @@ export default function Home() {
       process.env.EMAILJS_USER_ID
     ).then((result) => {
       console.log(result.text)
+      alert(result.text)
     }, (error) => {
       console.log(error.text)
+      alert(error.text)
     })
     document.getElementById('user_email').value = ''
   }
