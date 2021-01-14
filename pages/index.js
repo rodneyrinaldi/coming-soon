@@ -3,30 +3,23 @@ import Head from 'next/head'
 import Image from 'next/image'
 import emailjs from 'emailjs-com'
 
-export default function Home() {
+function Home(props) {
 
   const [email, setEmail] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault()
 
-    console.log(process.env.EMAILJS_SERVICE_ID)
-    console.log(process.env.EMAILJS_TEMPLATE_ID)
-    console.log(process.env.EMAILJS_USER_ID)
-
     const params = { sitename: 'teste', emailaddress: email }
-    emailjs.send(
-      process.env.EMAILJS_SERVICE_ID,
-      process.env.EMAILJS_TEMPLATE_ID,
-      params,
-      process.env.EMAILJS_USER_ID
-    ).then((result) => {
-      console.log(result.text)
-      alert(result.text)
-    }, (error) => {
-      console.log(error.text)
-      alert(error.text)
-    })
+
+    emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, params, process.env.EMAILJS_USER_ID)
+      .then((result) => {
+        console.log(result.text)
+      }, (error) => {
+        console.log(error.text)
+      })
+
+    document.getElementById('message_email').value = 'INSCRITO'
     document.getElementById('user_email').value = ''
   }
 
@@ -66,3 +59,15 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getServerProps() {
+  return {
+    props: {
+      emailjsServiceId: process.env.EMAILJS_SERVICE_ID,
+      emailjsTemplateId: process.env.EMAILJS_TEMPLATE_ID,
+      emailjsUserId: process.env.EMAILJS_USER_ID
+    },
+  }
+}
+
+export default Home
