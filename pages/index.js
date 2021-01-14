@@ -1,20 +1,24 @@
 import { useState } from 'react';
+import { useRouter } from "next/router"
 import Head from 'next/head'
 import Image from 'next/image'
 import emailjs from 'emailjs-com'
 
 function Home(props) {
-
+  const router = useRouter()
   const [email, setEmail] = useState("")
+
+  const { query: { service }, } = router
 
   function handleSubmit(e) {
     e.preventDefault()
 
+    const params = { sitename: service, emailaddress: email }
+
     console.log(process.env.EMAILJS_SERVICE_ID)
     console.log(process.env.EMAILJS_TEMPLATE_ID)
     console.log(process.env.EMAILJS_USER_ID)
-
-    const params = { sitename: 'rodneyrinaldi.com', emailaddress: email }
+    console.log(params)
 
     emailjs.send(
       process.env.EMAILJS_SERVICE_ID,
@@ -74,6 +78,9 @@ export async function getServerProps() {
       emailjsTemplateId: process.env.EMAILJS_TEMPLATE_ID,
       emailjsUserId: process.env.EMAILJS_USER_ID
     },
+    query: {
+
+    }
   }
 }
 
