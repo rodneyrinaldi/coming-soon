@@ -1,6 +1,10 @@
+// 'https://rr-coming-soon.vercel.app/api/send/'
+
 module.exports = {
   env: {
-    apiUrlPrd: 'https://rr-coming-soon.vercel.app/api/send/',
-    apiUrlDev: 'http://localhost:3000/api/send/',
-  },
+    EMAILJS_SERVICE_ID: '',
+    EMAILJS_TEMPLATE_ID: '',
+    EMAILJS_USER_ID: ''
+  }
 }
+
