@@ -10,14 +10,22 @@ function Home(props) {
   function handleSubmit(e) {
     e.preventDefault()
 
+    console.log(process.env.EMAILJS_SERVICE_ID)
+    console.log(process.env.EMAILJS_TEMPLATE_ID)
+    console.log(process.env.EMAILJS_USER_ID)
+
     const params = { sitename: 'rodneyrinaldi.com', emailaddress: email }
 
-    emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, params, process.env.EMAILJS_USER_ID)
-      .then((result) => {
-        console.log(result.text)
-      }, (error) => {
-        console.log(error.text)
-      })
+    emailjs.send(
+      process.env.EMAILJS_SERVICE_ID,
+      process.env.EMAILJS_TEMPLATE_ID,
+      params,
+      process.env.EMAILJS_USER_ID
+    ).then((result) => {
+      console.log(result.text)
+    }, (error) => {
+      console.log(error.text)
+    })
 
     document.getElementById('user_email').value = ''
   }
